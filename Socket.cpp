@@ -273,7 +273,7 @@ int SocketConnection::recvFrom(char* data, int dataLen, InetHost* from, int flag
     socklen_t fromAddrLen = sizeof(sockaddr);
 
     return ::recvfrom(
-        this->_socket, data, dataLen, flags, (from ? (sockaddr*)&from->host() : NULL), &fromAddrLen
+        this->_socket, data, dataLen, flags, (from ? (sockaddr*)&from->host() : NULL), (from ? &fromAddrLen : NULL)
     );
 }
 
@@ -372,4 +372,12 @@ TcpServer::TcpServer(unsigned short port)
 
 TcpClient TcpServer::accept() {
     return TcpClient(Socket::accept());
+}
+
+//
+//
+//
+
+UdpSocket::UdpSocket() : SocketConnection(AF_INET, SOCK_DGRAM, IPPROTO_UDP) {
+    
 }

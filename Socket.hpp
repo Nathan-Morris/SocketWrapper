@@ -187,8 +187,8 @@ public:
 
 // deleted socket operations
 public:
-    bool bind() const = delete;
-    bool bind(const InetAddress& bindHost) const = delete;
+    //bool bind() const = delete;
+    //bool bind(const InetAddress& bindHost) const = delete;
     bool listen(int backLog = SOMAXCONN) const = delete;
     Socket accept() const = delete;
 };
@@ -213,6 +213,15 @@ public:
     TcpServer();
     TcpServer(unsigned short port);
     TcpClient accept();
+};
+
+//
+//
+//
+
+class UdpSocket : public SocketConnection {
+public:
+    UdpSocket();
 };
 
 #endif
